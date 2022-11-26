@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //code something
+
         float horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
