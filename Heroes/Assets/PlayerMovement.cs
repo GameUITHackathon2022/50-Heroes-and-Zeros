@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody2D body;
     private Animator anim;
+
+    private float MovementSpeed = 1;
+    private float JumpForce = 1;
     private bool grounded;
 
     private void Awake()
@@ -17,9 +20,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
-    {
-        //code something
-
+    { 
         float horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
@@ -37,18 +38,20 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
             }
         }
-            
-        
-
+    
         //sets animation parameters
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", grounded);
+
+        Swallow();
     }
 
     private void Jump()
     {
         //body.velocity = new Vector2(body.velocity.x, speed);
         anim.SetTrigger("jump");
+        float jumpVelocity = 4f;
+        body.velocity = Vector2.up * jumpVelocity;
         grounded = false;
     }
 
@@ -61,5 +64,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
             grounded = true;
+    }
+    public void OnCompleteSallow()
+    {
+        anim.SetBool("swallow", false);
+    }
+    void Swallow ()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            anim.SetBool("swallow", true);
+             
+        }
+
     }
 }
