@@ -1,0 +1,8 @@
+Heroes/Library/
+Heroes/Logs/
+Heroes/obj/
+Heroes/Temp/
+Heroes/.vs/
+*.vsconfig
+*.csproj
+*.sln
