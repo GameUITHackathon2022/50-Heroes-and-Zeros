@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,15 +9,16 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
 
-    private float MovementSpeed = 1;
-    private float JumpForce = 1;
+    public GameObject gameOverSceen;
+    public static bool isGameOver;
     private bool grounded;
 
-    private void Awake()
+    private void Start()
     {
         //Grabs references for rigidbody and animator from game object.
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        isGameOver = false;
     }
 
     private void Update()
@@ -44,13 +46,18 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("grounded", grounded);
 
         Swallow();
+
+        if (isGameOver)
+        {
+            gameOverSceen.SetActive(true);
+        }
     }
 
     private void Jump()
     {
         //body.velocity = new Vector2(body.velocity.x, speed);
         anim.SetTrigger("jump");
-        float jumpVelocity = 4f;
+        float jumpVelocity = 6f;
         body.velocity = Vector2.up * jumpVelocity;
         grounded = false;
     }
@@ -78,4 +85,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    private void OnDestroy()
+    {
+        Debug.LogError("----");
+
+    }
+    //public void Replaylevel()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //}
 }

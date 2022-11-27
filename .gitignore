@@ -6,3 +6,13 @@ Heroes/.vs/
 *.vsconfig
 *.csproj
 *.sln
+Heroes/Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab.meta
+Heroes/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf
+*.meta
+*.asset
+*.unity
+*.cs
+*.psd
+Heroes/Assets/TextMesh Pro/Resources/
+Heroes/Assets/TextMesh Pro/Shaders/
+Heroes/Assets/TextMesh Pro/
